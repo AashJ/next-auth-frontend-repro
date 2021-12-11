@@ -1,0 +1,11 @@
+schema: ../services/backend/schema.graphql
+documents: ./lib/**/*.graphql
+generates:
+  ./lib/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-document-nodes
+      - typescript-urql
+      - urql-introspection
+      - typescript-urql-graphcache

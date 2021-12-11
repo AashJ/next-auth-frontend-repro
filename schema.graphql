@@ -1,0 +1,66 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Codestory {
+    createdAt: DateTime!
+    gitOrg: String!
+    gitRepo: String!
+    id: ID!
+    steps: [CodestoryStep!]!
+    title: String!
+    updatedAt: DateTime!
+}
+
+type CodestoryStep {
+    description: String!
+    highlightedLines: [CodestoryStepHighlightedRange!]!
+    id: ID!
+    order: Int!
+    path: String!
+    title: String!
+}
+
+type CodestoryStepHighlightedRange {
+    end: Int!
+    start: Int!
+}
+
+type Mutation {
+    createCodestory(gitOrg: String!, gitRepo: String!, title: String!): Codestory!
+    updateCodestory(codestory: CodestoryUpdateInputType!): Codestory
+}
+
+type Query {
+    getCodestoriesForRepo(org: String!, repo: String!): [Codestory!]!
+    getCodestory(id: String!): Codestory
+    hello: String!
+}
+
+input CodestoryStepHighlightedLinesUpsertInputType {
+    end: Int!
+    id: String
+    start: Int!
+}
+
+input CodestoryStepUpdateInputType {
+    description: String!
+    highlightedLines: [CodestoryStepHighlightedLinesUpsertInputType!]!
+    id: String
+    order: Int!
+    path: String!
+    title: String!
+}
+
+input CodestoryUpdateInputType {
+    id: String!
+    steps: [CodestoryStepUpdateInputType!]!
+    title: String!
+}
+
+
+"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar DateTime
